@@ -7,13 +7,21 @@ class Daftar extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mod_daftar');
+        $this->load->model('Mod_home');
     }
 
     public function index()
     {
-
+        $dayOfWeek = date('w'); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+        $data['ruang'] = $this->Mod_home->get_all_ruang();
+        
+        // Ambil jadwal untuk semua ruang
+        foreach ($data['ruang'] as $ruang) {
+            $data['jadwal'][$ruang->kd_ruang] = $this->Mod_home->get_jadwal_by_kd_ruang($ruang->kd_ruang, $dayOfWeek);
+        }
+        
         $this->load->view('partials/header');
-        $this->load->view('frontend/daftar');
+        $this->load->view('frontend/daftar', $data);
         $this->load->view('partials/footer');
     }
 
@@ -26,7 +34,9 @@ class Daftar extends CI_Controller
 
     public function get_schedule($kd_ruang)
     {
-        $data = $this->Mod_daftar->get_jadwal($kd_ruang);
+        $dayOfWeek = date('w');
+        $data = $this->Mod_home->get_jadwal_by_kd_ruang($kd_ruang, $dayOfWeek);
         echo json_encode($data);
     }
 }
+

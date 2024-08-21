@@ -1031,6 +1031,15 @@
 </div>
 <!-- ====== Hero Section End -->
 
+<!-- Popup -->
+<div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+        <h2 class="text-xl font-bold mb-4">Selamat Datang!</h2>
+        <p class="mb-4">Ini adalah popup informasi yang muncul saat pertama kali Anda membuka halaman ini.</p>
+        <button id="closePopup" class="px-4 py-2 bg-blue-500 text-white rounded-lg">Tutup</button>
+    </div>
+</div>
+
 
 
 <style>
@@ -1041,9 +1050,35 @@
     #scheduleResults {
         display: none;
     }
+
+    #popup {
+        display: none; /* Hide by default */
+    }
+
+    #popup.active {
+        display: flex; /* Show when active */
+    }
 </style>
 
+
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const popup = document.getElementById('popup');
+        const closePopupButton = document.getElementById('closePopup');
+        const hasVisited = localStorage.getItem('hasVisited');
+
+        // Tampilkan popup jika pengguna belum pernah mengunjungi halaman ini
+        if (!hasVisited) {
+            popup.classList.add('active');
+            localStorage.setItem('hasVisited', 'true');
+        }
+
+        // Tutup popup saat tombol diklik
+        closePopupButton.addEventListener('click', function() {
+            popup.classList.remove('active');
+        });
+    });
+
     document.getElementById('searchInput').addEventListener('input', function() {
         const query = this.value;
         const searchResults = document.getElementById('searchResults');
@@ -1087,35 +1122,54 @@
     });
 
     document.getElementById('searchResults').addEventListener('click', function(e) {
-        if (e.target.closest('[data-room]')) {
-            const room = e.target.closest('[data-room]').getAttribute('data-room');
-            const scheduleResults = document.getElementById('scheduleResults');
+    if (e.target.closest('[data-room]')) {
+        const room = e.target.closest('[data-room]').getAttribute('data-room');
+        const scheduleResults = document.getElementById('scheduleResults');
 
-            // AJAX request untuk mengambil data jadwal berdasarkan room
-            $.ajax({
-                url: "<?= base_url('home/get_schedule/'); ?>" + room,  // URL untuk mengambil jadwal dari fungsi get_schedule
-                method: "GET",
-                success: function(response) {
-                    const scheduleData = JSON.parse(response);
-                    let scheduleContent = `<h3 class="text-lg font-semibold">Jadwal Ruang ${room}</h3>`;
+        // AJAX request untuk mengambil data jadwal berdasarkan room
+        $.ajax({
+            url: "<?= base_url('home/get_schedule/'); ?>" + room,  // URL untuk mengambil jadwal dari fungsi get_schedule
+            method: "GET",
+            success: function(response) {
+                const scheduleData = JSON.parse(response);
+                let scheduleContent = `<h3 class="text-lg font-semibold">Jadwal Ruang ${room} Hari Ini</h3><br>`;
 
-                    if (scheduleData.length > 0) {
-                        scheduleData.forEach(function(schedule) {
+                if (scheduleData.length > 0) {
+                    const today = new Date().getDay(); // Get current day of the week
+
+                    // Filter jadwal yang sesuai dengan hari ini
+                    scheduleData.forEach(function(schedule) {
+                        const scheduleDay = new Date(schedule.start_time).getDay();
+                        if (scheduleDay === today) {
+                            const startTime = new Date(schedule.start_time);
+                            const endTime = new Date(schedule.end_time);
+
+                            // Format jam saja
+                            const startTimeFormatted = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+                            const endTimeFormatted = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+
                             scheduleContent += `<div class="p-2">
-                                                    <p><strong>${schedule.start_time} - ${schedule.end_time}</strong>: ${schedule.kegiatan}</p>
+                                                    <p><strong>${startTimeFormatted} - ${endTimeFormatted}</strong>: ${schedule.kegiatan}</p>
                                                 </div>`;
-                        });
-                    } else {
-                        scheduleContent = '<p class="text-gray-500">Tidak ada jadwal ditemukan.</p>';
+                        }
+                    });
+
+                    // Jika tidak ada jadwal untuk hari ini
+                    if (scheduleContent === `<h3 class="text-lg font-semibold">Jadwal Ruang ${room}</h3>`) {
+                        scheduleContent += '<p class="text-gray-500">Tidak ada jadwal untuk hari ini.</p>';
                     }
-
-                    scheduleResults.innerHTML = scheduleContent;
-                    scheduleResults.style.display = 'block';
+                } else {
+                    scheduleContent = '<p class="text-gray-500">Tidak ada jadwal ditemukan.</p>';
                 }
-            });
 
-            // Sembunyikan hasil pencarian setelah klik
-            document.getElementById('searchResults').style.display = 'none';
-        }
-    });
+                scheduleResults.innerHTML = scheduleContent;
+                scheduleResults.style.display = 'block';
+            }
+        });
+
+        // Sembunyikan hasil pencarian setelah klik
+        document.getElementById('searchResults').style.display = 'none';
+    }
+});
+
 </script>

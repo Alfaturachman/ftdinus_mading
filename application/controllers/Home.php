@@ -26,7 +26,8 @@ class Home extends CI_Controller
 
     public function get_schedule($kd_ruang) 
     {
-        $data = $this->Mod_home->get_jadwal($kd_ruang);
+        $dayOfWeek = date('w'); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
+        $data = $this->Mod_home->get_jadwal_by_day($kd_ruang, $dayOfWeek);
         echo json_encode($data);
     }
 }
