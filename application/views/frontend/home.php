@@ -24,7 +24,20 @@
                                     type="text"
                                     id="searchInput"
                                     placeholder="Cari Ruang"
-                                    class="w-full py-3 px-4 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                                    class="w-full py-3 px-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+                                <!-- Container for button and tooltip -->
+                                <div class="relative ml-2">
+                                    <!-- Refresh Button with Tooltip -->
+                                    <button
+                                        id="refreshButton"
+                                        class="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                    <!-- Tooltip -->
+                                    <span class="absolute left-1/2 transform -translate-x-1/2 top-full mt-2 hidden text-sm text-white bg-gray-800 rounded-md px-2 py-1 whitespace-nowrap group-hover:block">
+                                        Refresh
+                                    </span>
+                                </div>
                             </div>
                             <!-- Card for search results -->
                             <div id="searchResults" class="mt-4 p-4 bg-white border border-gray-300 rounded-lg shadow-sm max-h-60 overflow-y-auto">
@@ -35,7 +48,7 @@
                                 <!-- Schedule will appear here -->
                             </div>
                         </div>
-                        <br><br><br><br><br><br><br><br><br><br>
+                        <br><br><br><br><br><br><br><br><br><br><br><br>
                     </div>
                 </div>
             </div>
@@ -1052,11 +1065,13 @@
     }
 
     #popup {
-        display: none; /* Hide by default */
+        display: none;
+        /* Hide by default */
     }
 
     #popup.active {
-        display: flex; /* Show when active */
+        display: flex;
+        /* Show when active */
     }
 </style>
 
@@ -1091,9 +1106,11 @@
 
         if (query) {
             $.ajax({
-                url: "<?= base_url('home/fetch'); ?>",  // URL untuk mengambil data dari fungsi fetch
+                url: "<?= base_url('home/fetch'); ?>", // URL untuk mengambil data dari fungsi fetch
                 method: "POST",
-                data: { keyword: query },
+                data: {
+                    keyword: query
+                },
                 success: function(response) {
                     const results = JSON.parse(response);
                     let resultFound = false;
@@ -1122,54 +1139,66 @@
     });
 
     document.getElementById('searchResults').addEventListener('click', function(e) {
-    if (e.target.closest('[data-room]')) {
-        const room = e.target.closest('[data-room]').getAttribute('data-room');
-        const scheduleResults = document.getElementById('scheduleResults');
+        if (e.target.closest('[data-room]')) {
+            const room = e.target.closest('[data-room]').getAttribute('data-room');
+            const scheduleResults = document.getElementById('scheduleResults');
 
-        // AJAX request untuk mengambil data jadwal berdasarkan room
-        $.ajax({
-            url: "<?= base_url('home/get_schedule/'); ?>" + room,  // URL untuk mengambil jadwal dari fungsi get_schedule
-            method: "GET",
-            success: function(response) {
-                const scheduleData = JSON.parse(response);
-                let scheduleContent = `<h3 class="text-lg font-semibold">Jadwal Ruang ${room} Hari Ini</h3><br>`;
+            // AJAX request untuk mengambil data jadwal berdasarkan room
+            $.ajax({
+                url: "<?= base_url('home/get_schedule/'); ?>" + room, // URL untuk mengambil jadwal dari fungsi get_schedule
+                method: "GET",
+                success: function(response) {
+                    const scheduleData = JSON.parse(response);
+                    let scheduleContent = `<h3 class="text-lg font-semibold">Jadwal Ruang ${room} Hari Ini</h3><br>`;
 
-                if (scheduleData.length > 0) {
-                    const today = new Date().getDay(); // Get current day of the week
+                    if (scheduleData.length > 0) {
+                        const today = new Date().getDay(); // Get current day of the week
 
-                    // Filter jadwal yang sesuai dengan hari ini
-                    scheduleData.forEach(function(schedule) {
-                        const scheduleDay = new Date(schedule.start_time).getDay();
-                        if (scheduleDay === today) {
-                            const startTime = new Date(schedule.start_time);
-                            const endTime = new Date(schedule.end_time);
+                        // Filter jadwal yang sesuai dengan hari ini
+                        scheduleData.forEach(function(schedule) {
+                            const scheduleDay = new Date(schedule.start_time).getDay();
+                            if (scheduleDay === today) {
+                                const startTime = new Date(schedule.start_time);
+                                const endTime = new Date(schedule.end_time);
 
-                            // Format jam saja
-                            const startTimeFormatted = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-                            const endTimeFormatted = endTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+                                // Format jam saja
+                                const startTimeFormatted = startTime.toLocaleTimeString([], {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: false
+                                });
+                                const endTimeFormatted = endTime.toLocaleTimeString([], {
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: false
+                                });
 
-                            scheduleContent += `<div class="p-2">
+                                scheduleContent += `<div class="p-2">
                                                     <p><strong>${startTimeFormatted} - ${endTimeFormatted}</strong>: ${schedule.kegiatan}</p>
                                                 </div>`;
+                            }
+                        });
+
+                        // Jika tidak ada jadwal untuk hari ini
+                        if (scheduleContent === `<h3 class="text-lg font-semibold">Jadwal Ruang ${room}</h3>`) {
+                            scheduleContent += '<p class="text-gray-500">Tidak ada jadwal untuk hari ini.</p>';
                         }
-                    });
-
-                    // Jika tidak ada jadwal untuk hari ini
-                    if (scheduleContent === `<h3 class="text-lg font-semibold">Jadwal Ruang ${room}</h3>`) {
-                        scheduleContent += '<p class="text-gray-500">Tidak ada jadwal untuk hari ini.</p>';
+                    } else {
+                        scheduleContent = '<p class="text-gray-500">Tidak ada jadwal ditemukan.</p>';
                     }
-                } else {
-                    scheduleContent = '<p class="text-gray-500">Tidak ada jadwal ditemukan.</p>';
+
+                    scheduleResults.innerHTML = scheduleContent;
+                    scheduleResults.style.display = 'block';
                 }
+            });
 
-                scheduleResults.innerHTML = scheduleContent;
-                scheduleResults.style.display = 'block';
-            }
-        });
+            // Sembunyikan hasil pencarian setelah klik
+            document.getElementById('searchResults').style.display = 'none';
+        }
+    });
 
-        // Sembunyikan hasil pencarian setelah klik
-        document.getElementById('searchResults').style.display = 'none';
-    }
-});
-
+    document.getElementById('refreshButton').addEventListener('click', function() {
+        // Reload the current page
+        window.location.reload();
+    });
 </script>
