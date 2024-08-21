@@ -25,12 +25,6 @@
                                     id="searchInput"
                                     placeholder="Cari Ruang"
                                     class="w-full py-3 px-4 pl-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
-                                <button
-                                    type="button"
-                                    id="searchButton"
-                                    class="ml-2 px-4 py-2 text-blue bg-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                                    Search
-                                </button>
                             </div>
                             <!-- Card for search results -->
                             <div id="searchResults" class="mt-4 p-4 bg-white border border-gray-300 rounded-lg shadow-sm max-h-60 overflow-y-auto">
