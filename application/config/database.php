@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'ft.dinus.ac.id',
+	'username' => 'ftdinus_a22202202968',
+	'password' => 'G&HblLZe@.+42C}c@',
+	'database' => 'ftdinus_siramen',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

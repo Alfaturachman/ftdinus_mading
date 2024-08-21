@@ -10,7 +10,7 @@
                         href="javascript:void(0)"
                         class="mb-6 inline-block max-w-[160px]">
                         <img
-                            src="assets/images/logo/logo-white.svg"
+                            src="<?= base_url('')?>assets/images/logo/logo-white.svg"
                             alt="logo"
                             class="max-w-full" />
                     </a>
@@ -83,143 +83,13 @@
                 </div>
             </div>
             <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-                <div class="mb-10 w-full">
-                    <h4 class="mb-9 text-lg font-semibold text-white">About Us</h4>
-                    <ul>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Features
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                About
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Testimonial
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
-                <div class="mb-10 w-full">
-                    <h4 class="mb-9 text-lg font-semibold text-white">Features</h4>
-                    <ul>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                How it works
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Privacy policy
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Terms of Service
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Refund policy
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
-                <div class="mb-10 w-full">
-                    <h4 class="mb-9 text-lg font-semibold text-white">
-                        Our Products
-                    </h4>
-                    <ul>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                LineIcons
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                Ecommerce HTML
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                TailAdmin
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="javascript:void(0)"
-                                class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
-                                PlainAdmin
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="w-full px-4 md:w-2/3 lg:w-6/12 xl:w-3/12">
                 <div class="mb-10 w-full">
-                    <h4 class="mb-9 text-lg font-semibold text-white">Latest blog</h4>
-                    <div class="flex flex-col gap-8">
-                        <a
-                            href="blog-details.html"
-                            class="group flex items-center gap-[22px]">
-                            <div class="overflow-hidden rounded">
-                                <img
-                                    src="./assets/images/blog/blog-footer-01.jpg"
-                                    alt="blog" />
-                            </div>
-                            <span
-                                class="max-w-[180px] text-base text-gray-7 group-hover:text-white">
-                                I think really important to design with...
-                            </span>
-                        </a>
-                        <a
-                            href="blog-details.html"
-                            class="group flex items-center gap-[22px]">
-                            <div class="overflow-hidden rounded">
-                                <img
-                                    src="./assets/images/blog/blog-footer-02.jpg"
-                                    alt="blog" />
-                            </div>
-                            <span
-                                class="max-w-[180px] text-base text-gray-7 group-hover:text-white">
-                                Recognizing the need is the primary...
-                            </span>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -229,38 +99,16 @@
         class="mt-12 border-t border-[#8890A4] border-opacity-40 py-8 lg:mt-[60px]">
         <div class="container">
             <div class="-mx-4 flex flex-wrap">
-                <div class="w-full px-4 md:w-2/3 lg:w-1/2">
-                    <div class="my-1">
-                        <div
-                            class="-mx-3 flex items-center justify-center md:justify-start">
-                            <a
-                                href="javascript:void(0)"
-                                class="px-3 text-base text-gray-7 hover:text-white hover:underline">
-                                Privacy policy
-                            </a>
-                            <a
-                                href="javascript:void(0)"
-                                class="px-3 text-base text-gray-7 hover:text-white hover:underline">
-                                Legal notice
-                            </a>
-                            <a
-                                href="javascript:void(0)"
-                                class="px-3 text-base text-gray-7 hover:text-white hover:underline">
-                                Terms of service
-                            </a>
-                        </div>
-                    </div>
-                </div>
                 <div class="w-full px-4 md:w-1/3 lg:w-1/2">
-                    <div class="my-1 flex justify-center md:justify-end">
+                    <div class="my-1 flex justify-start md:justify-start">
                         <p class="text-base text-gray-7">
-                            Designed and Developed by
+                            Copyright 2024
                             <a
-                                href="https://tailgrids.com"
+                                href="https://dinus.ac.id/"
                                 rel="nofollow noopner"
                                 target="_blank"
                                 class="text-gray-1 hover:underline">
-                                TailGrids and UIdeck
+                                &copy; Universitas Dian Nuswantoro
                             </a>
                         </p>
                     </div>
@@ -489,7 +337,6 @@
 
 <!-- ====== Back To Top Start -->
 <a
-    href="javascript:void(0)"
     class="back-to-top fixed bottom-8 left-auto right-8 z-[999] hidden h-10 w-10 items-center justify-center rounded-md bg-primary text-white shadow-md transition duration-300 ease-in-out hover:bg-dark">
     <span
         class="mt-[6px] h-3 w-3 rotate-45 border-l border-t border-white"></span>
@@ -498,8 +345,8 @@
 
 <!-- ====== All Scripts -->
 
-<script src="assets/js/swiper-bundle.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="<?= base_url('')?>assets/js/swiper-bundle.min.js"></script>
+<script src="<?= base_url('')?>assets/js/main.js"></script>
 <script>
     // ==== for menu scroll
     const pageLink = document.querySelectorAll(".ud-menu-scroll");
@@ -568,6 +415,19 @@
                 spaceBetween: 30,
             },
         },
+    });
+
+    document.querySelector('.back-to-top').addEventListener('click', function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+
+    // Optional: Show the button when the user scrolls down
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 200) { // Adjust the value as needed
+            document.querySelector('.back-to-top').classList.remove('hidden');
+        } else {
+            document.querySelector('.back-to-top').classList.add('hidden');
+        }
     });
 </script>
 </body>
