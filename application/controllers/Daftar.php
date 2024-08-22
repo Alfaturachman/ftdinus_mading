@@ -25,9 +25,9 @@ class Daftar extends CI_Controller
             $data['jadwal_besok'][$ruang->kd_ruang] = $this->Mod_home->get_jadwal_by_kd_ruang_tomorrow($ruang->kd_ruang, $dayOfWeek);
         }
         
-        $this->load->view('partials/header');
+        $this->load->view('frontend/partials/header');
         $this->load->view('frontend/daftar', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('frontend/partials/footer');
     }
 
 
