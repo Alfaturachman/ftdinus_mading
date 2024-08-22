@@ -11,6 +11,13 @@ class Ruang extends CI_Controller
     public function index()
     {
         $this->load->view('backend/partials/header');
+        $this->load->view('backend/ruang/view');
+        $this->load->view('backend/partials/footer');
+    }
+
+    public function add()
+    {
+        $this->load->view('backend/partials/header');
         $this->load->view('backend/ruang/add');
         $this->load->view('backend/partials/footer');
     }

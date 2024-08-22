@@ -11,6 +11,13 @@ class Jadwal extends CI_Controller
     public function index()
     {
         $this->load->view('backend/partials/header');
+        $this->load->view('backend/jadwal/view');
+        $this->load->view('backend/partials/footer');
+    }
+
+    public function add()
+    {
+        $this->load->view('backend/partials/header');
         $this->load->view('backend/jadwal/add');
         $this->load->view('backend/partials/footer');
     }
