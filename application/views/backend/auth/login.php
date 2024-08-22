@@ -46,10 +46,11 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-block shadow-sm mt-5">Login</button>
                     </form>
+                    <!--
                     <div class="text-center mt-5 h6">
                         <p class="text-gray-600">Belum Punya Akun? <a href="<?= base_url('auth/register') ?>" class="font-bold">Register</a></p>
-                        <!-- <p><a class="font-bold" href="auth-forgot-password.html">Lupa password?</a></p> -->
-                    </div>
+                         <p><a class="font-bold" href="auth-forgot-password.html">Lupa password?</a></p>
+                    </div>-->
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Daftar Jadwal</h3>
-                <p class="text-subtitle text-muted">Silahkan isi form di bawah untuk Jadwal</p>
+                <p class="text-subtitle text-muted">Daftar data untuk Jadwal</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -19,7 +19,7 @@
 
     <section class="section">
         <div class="d-flex justify-content-end mb-3">
-            <a href="<?= base_url('jadwal/add') ?>" class="btn btn-primary">
+            <a href="<?= base_url('jadwal/add_view') ?>" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah Jadwal
             </a>
         </div>
@@ -38,9 +38,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if (!empty($daftar_jadwal)) : ?>
+                            <?php if (!empty($jadwal)) : ?>
                                 <?php $no = 1;
-                                foreach ($daftar_jadwal as $jadwal) : ?>
+                                foreach ($jadwal as $jadwal) : ?>
                                     <tr>
                                         <td class="py-3"><?php echo $no++; ?></td>
                                         <td><?= $jadwal->kd_ruang ?></td>

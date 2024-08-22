@@ -6,7 +6,6 @@ class Daftar extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Mod_daftar');
         $this->load->model('Mod_home');
     }
 

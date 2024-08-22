@@ -27,7 +27,7 @@
                                     <?= validation_errors() ?>
                                 </div>
                             <?php endif; ?>
-                            <form class="form form-horizontal" id="analisisForm" action="<?= base_url('analisis_darah/add') ?>" method="POST">
+                            <form class="form form-horizontal" id="analisisForm" action="<?= base_url('jadwal/add') ?>" method="POST">
                                 <div class="form-body">
                                     <div class="row">
                                         <div>
@@ -38,35 +38,35 @@
                                             <label for="kd_ruang">Kode Ruang</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text" id="kd_ruang" class="form-control" name="kd_ruang" placeholder="Kode Ruang" value="<?= set_value('kd_ruang') ?>" required>
+                                            <input type="text" id="kd_ruang" class="form-control" name="kd_ruang" placeholder="masukkan kode ruang (e.g. i.1.3)"  required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="kegiatan">Kegiatan</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text" id="kegiatan" class="form-control" name="kegiatan" placeholder="Kegiatan" value="<?= set_value('kegiatan') ?>" required>
+                                            <input type="text" id="kegiatan" class="form-control" name="kegiatan" placeholder="Kegiatan" required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="start_time">Waktu Mulai</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="datetime-local" id="start_time" class="form-control" name="start_time" placeholder="Waktu Mulai" value="<?= set_value('start_time') ?>" required>
+                                            <input type="datetime-local" id="start_time" class="form-control" name="start_time" placeholder="Waktu Mulai" required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="end_time">Waktu Selesai</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="datetime-local" id="end_time" class="form-control" name="end_time" placeholder="Waktu Selesai" value="<?= set_value('end_time') ?>" required>
+                                            <input type="datetime-local" id="end_time" class="form-control" name="end_time" placeholder="Waktu Selesai" required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="deskripsi">Deskripsi</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <textarea id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi Kegiatan" required><?= set_value('deskripsi') ?></textarea>
+                                            <textarea id="deskripsi" class="form-control" name="deskripsi" placeholder="Deskripsi Kegiatan" required></textarea>
                                         </div>
 
                                         <div class="col-sm-12 d-flex justify-content-end">

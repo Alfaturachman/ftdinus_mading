@@ -8,7 +8,8 @@ class Mod_home extends CI_Model
         parent::__construct();
     }
 
-    public function search_data($keyword) {
+    public function search_data($keyword) 
+    {
         // Tentukan tabel yang ingin Anda cari
         $this->db->select('*');
         $this->db->from('ruang');
@@ -22,7 +23,8 @@ class Mod_home extends CI_Model
         return $query->result();
     }
 
-    public function get_jadwal_by_day($kd_ruang, $dayOfWeek) {
+    public function get_jadwal_by_day($kd_ruang, $dayOfWeek) 
+    {
         $this->db->select('jadwal_rg.*, ruang.nama as ruang_nama');
         $this->db->from('jadwal_rg');
         $this->db->join('ruang', 'jadwal_rg.kd_ruang = ruang.kd_ruang', 'left');
