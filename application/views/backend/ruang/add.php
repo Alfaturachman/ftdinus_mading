@@ -38,28 +38,28 @@
                                             <label for="kd_ruang">Kode Ruang</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text" id="kd_ruang" class="form-control" name="kd_ruang" placeholder="Kode Ruang" value="<?= set_value('kd_ruang') ?>" required>
+                                            <input type="text" id="kd_ruang" class="form-control" name="kd_ruang" placeholder="masukkan kode ruang (e.g. i.1.3)" required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="nama">Nama Ruang</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama Ruang" value="<?= set_value('nama') ?>" required>
+                                            <input type="text" id="nama" class="form-control" name="nama" placeholder="masukkan nama ruang (e.g. Ruang Rapat atau Ruang Kelas)" required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="kap_kuliah">Kapasitas Kuliah</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" id="kap_kuliah" class="form-control" name="kap_kuliah" placeholder="Kapasitas Kuliah" value="<?= set_value('kap_kuliah') ?>" required>
+                                            <input type="number" id="kap_kuliah" class="form-control" name="kap_kuliah" placeholder="Kapasitas Kuliah" required>
                                         </div>
 
                                         <div class="col-md-4">
                                             <label for="kap_ujian">Kapasitas Ujian</label>
                                         </div>
                                         <div class="col-md-8 form-group">
-                                            <input type="number" id="kap_ujian" class="form-control" name="kap_ujian" placeholder="Kapasitas Ujian" value="<?= set_value('kap_ujian') ?>" required>
+                                            <input type="number" id="kap_ujian" class="form-control" name="kap_ujian" placeholder="Kapasitas Ujian" required>
                                         </div>
 
                                         <div class="col-sm-12 d-flex justify-content-end">
