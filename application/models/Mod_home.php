@@ -75,4 +75,39 @@ class Mod_home extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_tomorrow_jadwal($dayOfWeek)
+    {
+        // Increment the dayOfWeek to represent tomorrow
+        $tomorrowDayOfWeek = ($dayOfWeek + 1) % 7;
+
+        // Mengambil nama dan kd_ruang dari tabel ruang dan data jadwal_rg
+        $this->db->select('ruang.nama as ruang_nama, ruang.kd_ruang as ruang_kd, 
+                        TIME(jadwal_rg.start_time) as start_time, TIME(jadwal_rg.end_time) as end_time, 
+                        jadwal_rg.kegiatan');
+        $this->db->from('ruang');
+        $this->db->join('jadwal_rg', 'jadwal_rg.kd_ruang = ruang.kd_ruang AND DAYOFWEEK(jadwal_rg.start_time) = ' . ($tomorrowDayOfWeek + 1), 'left');
+        
+        // Urutkan hasil berdasarkan start_time
+        $this->db->order_by('jadwal_rg.start_time', 'ASC');
+        
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_jadwal_by_kd_ruang_tomorrow($kd_ruang, $dayOfWeek)
+    {
+        // Increment the dayOfWeek to represent tomorrow
+        $tomorrowDayOfWeek = ($dayOfWeek + 1) % 7;
+
+        $this->db->select('TIME(start_time) as start_time, TIME(end_time) as end_time, kegiatan');
+        $this->db->from('jadwal_rg');
+        $this->db->where('kd_ruang', $kd_ruang);
+        $this->db->where('DAYOFWEEK(start_time)', $tomorrowDayOfWeek + 1);
+        $this->db->order_by('start_time', 'ASC');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }
