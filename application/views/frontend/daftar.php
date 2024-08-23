@@ -30,6 +30,19 @@
             setInterval(function() {
                 location.reload();
             }, 30000); // 30000 milidetik = 30 detik
+
+            document.addEventListener('DOMContentLoaded', function () {
+                const scrollContainer = document.querySelector('.scroll-container');
+                const scrollContent = document.querySelector('.scroll-content');
+
+                scrollContainer.addEventListener('mouseover', function () {
+                    scrollContent.style.animationPlayState = 'paused';
+                });
+
+                scrollContainer.addEventListener('mouseout', function () {
+                    scrollContent.style.animationPlayState = 'running';
+                });
+            });
         </script>
 
         <div class="scroll-container">
