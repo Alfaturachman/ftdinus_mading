@@ -11,6 +11,21 @@
         .slick-slide {
             padding: 10px;
         }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 19%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 
@@ -31,73 +46,26 @@
     <div class="flex flex-1 overflow-hidden min-h-screen">
         <!-- Poster Kiri -->
         <div id="kiri" class="w-1/2 h-full overflow-hidden">
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20240322-105629.png" alt="Poster Kiri" class="w-full h-full object-cover">
+            <?php foreach($mading_umum as $u): ?>
+            <div class="video-container">
+                <iframe id="iframe-kiri" src="https://www.youtube.com/embed/<?= getYouTubeID($u->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20240322-105509.png" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20240322-105414.png" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-07-20230329-090320.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20221221-153324.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20221213-185426.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20221209-130431.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20221206-164654.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20221206-164640.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-01-20221206-164621.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kiri/wft-mad-pos-kiri-02-20221206-164056.jpeg" alt="Poster Kiri" class="w-full h-full object-cover">
-            </div>
+            <img src="<?= base_url('uploads/' . $u->mading_img) ?>" alt="Poster Kiri" class="w-full h-full object-cover">
+            <?php endforeach;?>
         </div>
 
         <!-- Poster Kanan -->
         <div id="kanan" class="w-1/2 h-full overflow-hidden">
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20240612-130732.png" alt="Poster Kanan" class="w-full h-full object-cover">
+            <?php foreach($mading_mahasiswa as $m):?>
+            <div class="video-container">
+                <iframe id="iframe-kanan" src="https://www.youtube.com/embed/<?= getYouTubeID($m->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
             </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20240105-144434.jpg" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20230925-102401.png" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20230920-122446.png" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20230919-185404.png" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20230919-185242.png" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20230919-180034.jpg" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20230905-122625.jpg" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-01-20221209-130457.jpeg" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
-            <div class="poster">
-                <img src="https://ft.dinus.ac.id/syafaat/aset/img/slick/kanan/wft-mad-pos-kanan-03-20221206-164230.png" alt="Poster Kanan" class="w-full h-full object-cover">
-            </div>
+            <img src="<?= base_url('uploads/' . $m->mading_img) ?>" alt="Poster Kanan" class="w-full h-full object-cover">
+            <?php endforeach;?>
         </div>
     </div>
 
@@ -105,68 +73,100 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $(document).ready(function() {
-            /* JAM DIGITAL */
-            function startTime() {
-                const today = new Date();
+    $(document).ready(function () {
+        function startTime() {
+            const today = new Date();
 
-                // Format tanggal
-                const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-                const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-                const dayName = days[today.getDay()];
-                const day = today.getDate();
-                const month = months[today.getMonth()];
-                const year = today.getFullYear();
+            const dayName = days[today.getDay()];
+            const day = today.getDate();
+            const month = months[today.getMonth()];
+            const year = today.getFullYear();
 
-                // Format waktu
-                let h = today.getHours();
-                let m = today.getMinutes();
-                let s = today.getSeconds();
-                m = checkTime(m);
-                s = checkTime(s);
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
 
-                // Menampilkan tanggal dan waktu dalam format yang diinginkan
-                document.getElementById('datetime').innerHTML = `${dayName}, ${day} ${month} ${year}, ${h}:${m}:${s}`;
-                setTimeout(startTime, 1000);
+            document.getElementById('datetime').innerHTML = `${dayName}, ${day} ${month} ${year}, ${h}:${m}:${s}`;
+            setTimeout(startTime, 1000);
+        }
+
+        function checkTime(i) {
+            return i < 10 ? "0" + i : i;
+        }
+
+        startTime();
+
+        var distance = 173 * 1000;
+        var x = setInterval(function () {
+            distance = distance - 1000;
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("countdown").innerHTML = "-" + checkTime(minutes) + ":" + checkTime(seconds);
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "SELESAI";
             }
+        }, 1000);
 
-            function checkTime(i) {
-                return i < 10 ? "0" + i : i;
-            }
-
-            // Mulai fungsi saat halaman dimuat
-            startTime();
-
-            /* COUNT-DOWN TIMER */
-            var distance = 173 * 1000;
-            var x = setInterval(function() {
-                distance = distance - 1000;
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                document.getElementById("countdown").innerHTML = "-" + checkTime(minutes) + ":" + checkTime(seconds);
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("countdown").innerHTML = "SELESAI";
-                }
-            }, 1000);
-
-            /* SLICK SLIDER */
-            $('#kiri').slick({
-                autoplay: true,
-                autoplaySpeed: 6789,
-                adaptiveHeight: true,
-                arrows: false
+        function onYouTubeIframeAPIReady() {
+            $('#kiri').find('iframe-kiri').each(function () {
+                var player = new YT.Player(this, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
             });
 
-            $('#kanan').slick({
-                autoplay: true,
-                autoplaySpeed: 6789,
-                adaptiveHeight: true,
-                arrows: false
+            $('#kanan').find('iframe-kanan').each(function () {
+                var player = new YT.Player(this, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
             });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                // Move to the next slide when the video ends
+                $('#kiri').slick('slickNext');
+                $('#kanan').slick('slickNext');
+            }
+        }
+
+        $('#kiri').slick({
+            autoplay: false, // Turn off autoplay for YouTube videos
+            adaptiveHeight: true,
+            arrows: false
         });
-    </script>
+
+        $('#kanan').slick({
+            autoplay: false, // Turn off autoplay for YouTube videos
+            adaptiveHeight: true,
+            arrows: false
+        });
+
+        // Load the YouTube IFrame API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    });
+</script>
+
+
+    <?php
+    function getYouTubeID($url)
+    {
+        parse_str(parse_url($url, PHP_URL_QUERY), $urlParams);
+        return $urlParams['v'] ?? '';
+    }
+    ?>
 
 </body>
 
