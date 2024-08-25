@@ -14,7 +14,8 @@
 
         .video-container {
             position: relative;
-            padding-bottom: 19%; /* 16:9 aspect ratio */
+            padding-bottom: 19%;
+            /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
         }
@@ -46,26 +47,26 @@
     <div class="flex flex-1 overflow-hidden min-h-screen">
         <!-- Poster Kiri -->
         <div id="kiri" class="w-1/2 h-full overflow-hidden">
-            <?php foreach($mading_umum as $u): ?>
-            <div class="video-container">
-                <iframe id="iframe-kiri" src="https://www.youtube.com/embed/<?= getYouTubeID($u->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
-            <img src="<?= base_url('uploads/' . $u->mading_img) ?>" alt="Poster Kiri" class="w-full h-full object-cover">
-            <?php endforeach;?>
+            <?php foreach ($mading_umum as $u): ?>
+                <div class="video-container">
+                    <iframe class="iframe-kiri" src="https://www.youtube.com/embed/<?= getYouTubeID($u->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <img src="<?= base_url('uploads/' . $u->mading_img) ?>" alt="Poster Kiri" class="w-full h-full object-cover">
+            <?php endforeach; ?>
         </div>
 
         <!-- Poster Kanan -->
         <div id="kanan" class="w-1/2 h-full overflow-hidden">
-            <?php foreach($mading_mahasiswa as $m):?>
-            <div class="video-container">
-                <iframe id="iframe-kanan" src="https://www.youtube.com/embed/<?= getYouTubeID($m->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
-                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-            </div>
-            <img src="<?= base_url('uploads/' . $m->mading_img) ?>" alt="Poster Kanan" class="w-full h-full object-cover">
-            <?php endforeach;?>
+            <?php foreach ($mading_mahasiswa as $m): ?>
+                <div class="video-container">
+                    <iframe class="iframe-kanan" src="https://www.youtube.com/embed/<?= getYouTubeID($m->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                <img src="<?= base_url('uploads/' . $m->mading_img) ?>" alt="Poster Kanan" class="w-full h-full object-cover">
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -73,92 +74,84 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-    $(document).ready(function () {
-        function startTime() {
-            const today = new Date();
+        $(document).ready(function() {
+            function startTime() {
+                const today = new Date();
 
-            const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+                const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+                const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
 
-            const dayName = days[today.getDay()];
-            const day = today.getDate();
-            const month = months[today.getMonth()];
-            const year = today.getFullYear();
+                const dayName = days[today.getDay()];
+                const day = today.getDate();
+                const month = months[today.getMonth()];
+                const year = today.getFullYear();
 
-            let h = today.getHours();
-            let m = today.getMinutes();
-            let s = today.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
+                let h = today.getHours();
+                let m = today.getMinutes();
+                let s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
 
-            document.getElementById('datetime').innerHTML = `${dayName}, ${day} ${month} ${year}, ${h}:${m}:${s}`;
-            setTimeout(startTime, 1000);
-        }
-
-        function checkTime(i) {
-            return i < 10 ? "0" + i : i;
-        }
-
-        startTime();
-
-        var distance = 173 * 1000;
-        var x = setInterval(function () {
-            distance = distance - 1000;
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById("countdown").innerHTML = "-" + checkTime(minutes) + ":" + checkTime(seconds);
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "SELESAI";
+                document.getElementById('datetime').innerHTML = `${dayName}, ${day} ${month} ${year}, ${h}:${m}:${s}`;
+                setTimeout(startTime, 1000);
             }
-        }, 1000);
 
-        function onYouTubeIframeAPIReady() {
-            $('#kiri').find('iframe-kiri').each(function () {
-                var player = new YT.Player(this, {
-                    events: {
-                        'onStateChange': onPlayerStateChange
-                    }
+            function checkTime(i) {
+                return i < 10 ? "0" + i : i;
+            }
+
+            startTime();
+
+            var distance = 173 * 1000;
+            var x = setInterval(function() {
+                distance = distance - 1000;
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerHTML = "-" + checkTime(minutes) + ":" + checkTime(seconds);
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "SELESAI";
+                }
+            }, 1000);
+
+            // Function to initialize YouTube players
+            function onYouTubeIframeAPIReady() {
+                $('#kiri iframe, #kanan iframe').each(function() {
+                    var player = new YT.Player(this, {
+                        events: {
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
                 });
+            }
+
+            // Function to handle state change
+            function onPlayerStateChange(event) {
+                if (event.data === YT.PlayerState.ENDED) {
+                    // Move to the next slide when the video ends
+                    $(event.target.a).closest('.slick-initialized').slick('slickNext');
+                }
+            }
+
+            $('#kiri').slick({
+                autoplay: false, // Turn off autoplay for YouTube videos
+                adaptiveHeight: true,
+                arrows: false
             });
 
-            $('#kanan').find('iframe-kanan').each(function () {
-                var player = new YT.Player(this, {
-                    events: {
-                        'onStateChange': onPlayerStateChange
-                    }
-                });
+            $('#kanan').slick({
+                autoplay: false, // Turn off autoplay for YouTube videos
+                adaptiveHeight: true,
+                arrows: false
             });
-        }
 
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                // Move to the next slide when the video ends
-                $('#kiri').slick('slickNext');
-                $('#kanan').slick('slickNext');
-            }
-        }
-
-        $('#kiri').slick({
-            autoplay: false, // Turn off autoplay for YouTube videos
-            adaptiveHeight: true,
-            arrows: false
+            // Load the YouTube IFrame API
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         });
-
-        $('#kanan').slick({
-            autoplay: false, // Turn off autoplay for YouTube videos
-            adaptiveHeight: true,
-            arrows: false
-        });
-
-        // Load the YouTube IFrame API
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    });
-</script>
-
+    </script>
 
     <?php
     function getYouTubeID($url)
