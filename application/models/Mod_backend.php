@@ -26,6 +26,14 @@ class Mod_backend extends CI_Model
         return $query->result();
     }
 
+    public function get_mading()
+    {
+        $this->db->select('*');
+        $this->db->from('mading');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     
     public function get_jadwal_by_id($id)
     {
@@ -45,6 +53,15 @@ class Mod_backend extends CI_Model
         return $query->result();
     }
 
+    public function get_mading_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('mading');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
    
     public function add_jadwal($data)
     {
@@ -54,6 +71,11 @@ class Mod_backend extends CI_Model
     public function add_ruang($data)
     {
         return $this->db->insert('ruang', $data);
+    }
+
+    public function add_mading($data)
+    {
+        return $this->db->insert('mading', $data);
     }
 
     
@@ -69,6 +91,12 @@ class Mod_backend extends CI_Model
         return $this->db->update('ruang', $data);
     }
 
+    public function update_mading($id, $data)
+    {
+        $this->db->where('id', $id);
+        return $this->db->update('mading', $data);
+    }
+
     
     public function delete_jadwal($id)
     {
@@ -78,5 +106,10 @@ class Mod_backend extends CI_Model
     public function delete_ruang($id)
     {
         return $this->db->delete('ruang', array('id' => $id));
+    }
+
+    public function delete_mading($id)
+    {
+        return $this->db->delete('mading', array('id' => $id));
     }
 }
