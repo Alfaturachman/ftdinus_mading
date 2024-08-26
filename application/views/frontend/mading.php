@@ -46,26 +46,30 @@
         <!-- Poster Kiri -->
         <div id="kiri" class="w-1/2 h-full overflow-hidden">
             <?php foreach ($mading_umum as $u): ?>
+                <?php if (!empty($u->mading_vid)) :?>
                 <div class="video-container">
                     <video class="video-kiri" controls autoplay muted>
                         <source src="<?= base_url('uploads/' . $u->mading_vid) ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
+                <?php endif;?>
                 <img src="<?= base_url('uploads/' . $u->mading_img) ?>" alt="Poster Kiri" class="w-full h-full object-cover">
             <?php endforeach; ?>
         </div>
 
         <!-- Poster Kanan -->
         <div id="kanan" class="w-1/2 h-full overflow-hidden">
-            <?php foreach ($mading_mahasiswa as $m): ?>
+            <?php foreach ($mading_mahasiswa as $m):                 
+                if (!empty($m->mading_vid)) :?>
                 <div class="video-container">
                     <video class="video-kanan" controls autoplay muted>
                         <source src="<?= base_url('uploads/' . $m->mading_vid) ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
-                <img src="<?= base_url('uploads/' . $m->mading_img) ?>" alt="Poster Kanan" class="w-full h-full object-cover">
+                <?php endif;?>
+                <img src="<?= base_url('uploads/' . $m->mading_img) ?>" alt="Poster Kanan" class="w-full h-full object-cover">                
             <?php endforeach; ?>
         </div>
     </div>
