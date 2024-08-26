@@ -31,4 +31,29 @@ class Mod_mading extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function update_expired_status()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        // Ambil tanggal dan waktu saat ini
+        $current_datetime = date('Y-m-d H:i:s');
+
+        // Periksa apakah ada konten yang kedaluwarsa
+        $query = $this->db->where('expire <', $current_datetime)
+                    ->where('status', 'Show')
+                    ->get('mading');
+
+        if ($query->num_rows() > 0) {
+            log_message('info', 'Ditemukan konten yang kedaluwarsa');
+
+            // Update status konten yang kedaluwarsa
+            $this->db->set('status', 'Hide')
+                    ->where('expire <', $current_datetime)
+                    ->where('status', 'Show')
+                    ->update('mading');
+        } else {
+            log_message('info', 'Tidak ada konten yang kedaluwarsa');
+        }
+    }
+
 }

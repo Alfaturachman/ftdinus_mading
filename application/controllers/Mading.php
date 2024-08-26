@@ -11,9 +11,10 @@ class Mading extends CI_Controller
 
     public function index()
     {
-        $data['title']='Cari Ruang';    
-        $data['youtube_link'] = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Ganti dengan link YouTube Anda
-        $data['video_path'] = base_url('uploads/test_video.mp4');
+        // Update status konten yang kedaluwarsa
+        $this->Mod_mading->update_expired_status();
+
+        $data['title']='Mading Digital';    
         $data['mading_umum']=$this->Mod_mading->get_mading_umum();
         $data['mading_mahasiswa']=$this->Mod_mading->get_mading_mahasiswa();
         $this->load->view('frontend/mading',$data);
