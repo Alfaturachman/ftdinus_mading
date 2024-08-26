@@ -115,13 +115,15 @@
             }, 1000);
 
             $('#kiri').slick({
-                autoplay: false,
+                autoplay: true,
+                autoplaySpeed: 5000, // Default to 5 seconds for images
                 adaptiveHeight: true,
                 arrows: false
             });
 
             $('#kanan').slick({
-                autoplay: false,
+                autoplay: true,
+                autoplaySpeed: 5000, // Default to 5 seconds for images
                 adaptiveHeight: true,
                 arrows: false
             });
@@ -151,12 +153,34 @@
                     });
                 }
 
+                function updateSlideTiming(container) {
+                    $(container).find('video').each(function() {
+                        const videoElement = this;
+                        if ($(this).closest('.slick-slide').hasClass('slick-active')) {
+                            const duration = videoElement.duration * 1000;
+                            $(container).slick('slickSetOption', 'autoplaySpeed', duration, true);
+                        }
+                    });
+                }
+
                 $('#kiri').on('afterChange', function(event, slick, currentSlide) {
-                    playActiveVideo('#kiri');
+                    const currentSlideElement = $(this).slick('getSlick').$slides.get(currentSlide);
+                    if ($(currentSlideElement).find('video').length > 0) {
+                        playActiveVideo('#kiri');
+                        updateSlideTiming('#kiri');
+                    } else {
+                        $(this).slick('slickSetOption', 'autoplaySpeed', 5000, true); // 5 seconds for images
+                    }
                 });
 
                 $('#kanan').on('afterChange', function(event, slick, currentSlide) {
-                    playActiveVideo('#kanan');
+                    const currentSlideElement = $(this).slick('getSlick').$slides.get(currentSlide);
+                    if ($(currentSlideElement).find('video').length > 0) {
+                        playActiveVideo('#kanan');
+                        updateSlideTiming('#kanan');
+                    } else {
+                        $(this).slick('slickSetOption', 'autoplaySpeed', 5000, true); // 5 seconds for images
+                    }
                 });
 
                 // Initial play for the first slide
@@ -167,6 +191,7 @@
             playVideoOnSlideChange();
         });
     </script>
+
 </body>
 
 </html>
