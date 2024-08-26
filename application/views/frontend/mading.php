@@ -15,17 +15,15 @@
         .video-container {
             position: relative;
             padding-bottom: 19%;
-            /* 16:9 aspect ratio */
             height: 0;
             overflow: hidden;
         }
 
-        .video-container iframe {
+        .video-container video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
         }
     </style>
 </head>
@@ -49,9 +47,10 @@
         <div id="kiri" class="w-1/2 h-full overflow-hidden">
             <?php foreach ($mading_umum as $u): ?>
                 <div class="video-container">
-                    <iframe class="iframe-kiri" src="https://www.youtube.com/embed/<?= getYouTubeID($u->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    <video class="video-kiri" controls autoplay muted>
+                        <source src="<?= base_url('assets/video/Dying Light - The Beast.mp4') ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <img src="<?= base_url('uploads/' . $u->mading_img) ?>" alt="Poster Kiri" class="w-full h-full object-cover">
             <?php endforeach; ?>
@@ -61,9 +60,10 @@
         <div id="kanan" class="w-1/2 h-full overflow-hidden">
             <?php foreach ($mading_mahasiswa as $m): ?>
                 <div class="video-container">
-                    <iframe class="iframe-kanan" src="https://www.youtube.com/embed/<?= getYouTubeID($m->link_yt); ?>?autoplay=1&mute=1&enablejsapi=1"
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
+                    <video class="video-kanan" controls autoplay muted>
+                        <source src="<?= base_url('assets/video/Dying Light - The Beast.mp4') ?>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <img src="<?= base_url('uploads/' . $m->mading_img) ?>" alt="Poster Kanan" class="w-full h-full object-cover">
             <?php endforeach; ?>
@@ -114,53 +114,59 @@
                 }
             }, 1000);
 
-            // Function to initialize YouTube players
-            function onYouTubeIframeAPIReady() {
-                $('#kiri iframe, #kanan iframe').each(function() {
-                    var player = new YT.Player(this, {
-                        events: {
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                });
-            }
-
-            // Function to handle state change
-            function onPlayerStateChange(event) {
-                if (event.data === YT.PlayerState.ENDED) {
-                    // Move to the next slide when the video ends
-                    $(event.target.a).closest('.slick-initialized').slick('slickNext');
-                }
-            }
-
             $('#kiri').slick({
-                autoplay: false, // Turn off autoplay for YouTube videos
+                autoplay: false,
                 adaptiveHeight: true,
                 arrows: false
             });
 
             $('#kanan').slick({
-                autoplay: false, // Turn off autoplay for YouTube videos
+                autoplay: false,
                 adaptiveHeight: true,
                 arrows: false
             });
 
-            // Load the YouTube IFrame API
-            var tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            function handleVideoEnd() {
+                var videoContainers = ['#kiri', '#kanan'];
+
+                videoContainers.forEach(function(container) {
+                    $(container + ' video').on('ended', function() {
+                        $(container).slick('slickNext');
+                    });
+                });
+            }
+
+            handleVideoEnd();
+
+            function playVideoOnSlideChange() {
+                function playActiveVideo(container) {
+                    $(container).find('video').each(function() {
+                        const videoElement = this;
+                        if ($(this).closest('.slick-slide').hasClass('slick-active')) {
+                            videoElement.play();
+                        } else {
+                            videoElement.pause();
+                            videoElement.currentTime = 0;
+                        }
+                    });
+                }
+
+                $('#kiri').on('afterChange', function(event, slick, currentSlide) {
+                    playActiveVideo('#kiri');
+                });
+
+                $('#kanan').on('afterChange', function(event, slick, currentSlide) {
+                    playActiveVideo('#kanan');
+                });
+
+                // Initial play for the first slide
+                playActiveVideo('#kiri');
+                playActiveVideo('#kanan');
+            }
+
+            playVideoOnSlideChange();
         });
     </script>
-
-    <?php
-    function getYouTubeID($url)
-    {
-        parse_str(parse_url($url, PHP_URL_QUERY), $urlParams);
-        return $urlParams['v'] ?? '';
-    }
-    ?>
-
 </body>
 
 </html>
