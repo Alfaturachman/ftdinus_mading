@@ -48,7 +48,7 @@
             <?php foreach ($mading_umum as $u): ?>
                 <div class="video-container">
                     <video class="video-kiri" controls autoplay muted>
-                        <source src="<?= base_url('assets/video/Dying Light - The Beast.mp4') ?>" type="video/mp4">
+                        <source src="<?= base_url('uploads/' . $u->mading_vid) ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -61,7 +61,7 @@
             <?php foreach ($mading_mahasiswa as $m): ?>
                 <div class="video-container">
                     <video class="video-kanan" controls autoplay muted>
-                        <source src="<?= base_url('assets/video/Dying Light - The Beast.mp4') ?>" type="video/mp4">
+                        <source src="<?= base_url('uploads/' . $m->mading_vid) ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>

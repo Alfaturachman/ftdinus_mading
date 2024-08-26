@@ -82,6 +82,13 @@
                                 <span>Input Ruang</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-item <?php echo ($this->uri->segment(1) == 'mading') ? 'active' : ''; ?>">
+                            <a href="<?php echo site_url('admin_mading'); ?>" class="sidebar-link">
+                                <i class="bi bi-heart-pulse-fill"></i>
+                                <span>Input Mading</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
