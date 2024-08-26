@@ -90,4 +90,23 @@ class Admin_mading extends CI_Controller
             redirect('admin_mading');
         }
     }
+
+    public function update_status($id)
+    {
+        $data = array(
+            'status' => $this->input->post('status'),
+        );
+
+        if ($this->Mod_backend->update_mading($id, $data)) {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('status' => 'success')));
+                redirect('admin_mading');
+        } else {
+            $this->output
+                ->set_status_header(500)
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('status' => 'error')));
+        }
+    }
 }

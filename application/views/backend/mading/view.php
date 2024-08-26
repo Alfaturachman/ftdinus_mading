@@ -33,8 +33,9 @@
                                 <th>Judul</th>
                                 <th>Kategori</th>
                                 <th>Gambar Mading</th>
-                                <th>Link Youtube</th>
+                                <th>Video Mading</th>
                                 <th>Expire</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,9 +46,30 @@
                                         <td class="py-3"><?php echo $no++; ?></td>
                                         <td><?= $mading->judul ?></td>
                                         <td><?= $mading->kategori ?></td>
-                                        <td><?= $mading->mading_img ?></td>
-                                        <td><?= $mading->mading_vid ?></td>
+                                        <td>
+                                            <img style="width: 60pt; height: 75pt;" src="<?= base_url('uploads/' . $mading->mading_img)?>" alt="">
+                                        </td>
+                                        <td>
+                                            <video style="height: 75pt;" class="video-kiri" controls muted>
+                                                <source src="<?= base_url('uploads/' . $mading->mading_vid) ?>" type="video/mp4">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </td>
                                         <td><?= $mading->expire ?></td>
+                                        <td>
+                                            <form action="<?php echo site_url('admin_mading/update_status/' . $mading->id); ?>" method="post">
+                                                <div class="form-group">
+                                                    <select name="status" class="form-select">
+                                                        <option value="<?= $mading->status?>" selected hidden><?= $mading->status?></option>
+                                                        <option value="Show">Show</option>
+                                                        <option value="Hide">Hide</option>
+                                                    </select>
+                                                </div>
+                                                <div class="justify-content-end">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php else : ?>
